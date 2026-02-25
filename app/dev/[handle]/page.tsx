@@ -3,7 +3,7 @@ import { MOCK_VERIFIED_TOKENS } from "@/lib/mock/tokens";
 import DevProfileHeader from "@/components/dev/DevProfileHeader";
 import CoinTable from "@/components/feeds/CoinTable";
 
-export default function DevProfilePage({ params }: { params: { handle: string } }) {
+export default function DevProfilePage({ params }: any) {
   const dev = MOCK_DEV_BY_HANDLE[params.handle];
 
   if (!dev) {
