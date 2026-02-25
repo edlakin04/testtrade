@@ -25,10 +25,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="container">{children}</main>
 
         <footer className="footer">
-          <div className="container">
-            AuthSwap — filtered discovery and verified dev listings. (UI shell)
-          </div>
-        </footer>
+  <div className="container">
+    <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+      <div>© {new Date().getFullYear()} AuthSwap</div>
+      <div style={{ color: "rgba(255,255,255,.62)" }}>
+        Filtered coins + verified dev listings • DYOR
+      </div>
+    </div>
+  </div>
+</footer>
       </body>
     </html>
   );
