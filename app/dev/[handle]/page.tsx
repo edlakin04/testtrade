@@ -38,7 +38,7 @@ export default function DevProfilePage({ params }: any) {
 
       <div className="panel">
         <h3>Coins</h3>
-        <CoinTable tokens={devTokens} variant="verified" />
+        <CoinTable tokens={devTokens} />
       </div>
     </>
   );
