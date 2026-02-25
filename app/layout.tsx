@@ -15,26 +15,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="header">
-          <Header />
-        </div>
-        <div className="subnav">
-          <Subnav />
-        </div>
-
-        <main className="container">{children}</main>
-
-        <footer className="footer">
-  <div className="container">
-    <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
-      <div>© {new Date().getFullYear()} AuthSwap</div>
-      <div style={{ color: "rgba(255,255,255,.62)" }}>
-        Filtered coins + verified dev listings • DYOR
-      </div>
+  <div
+    style={{
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column"
+    }}
+  >
+    <div className="header">
+      <Header />
     </div>
+
+    <div className="subnav">
+      <Subnav />
+    </div>
+
+    <main
+      className="container"
+      style={{ flex: 1 }}
+    >
+      {children}
+    </main>
+
+    <footer className="footer">
+      <div className="container">
+        <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+          <div>© {new Date().getFullYear()} AuthSwap</div>
+          <div style={{ color: "rgba(255,255,255,.62)" }}>
+            Filtered coins + verified dev listings • DYOR
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
-</footer>
-      </body>
+</body>
     </html>
   );
 }
