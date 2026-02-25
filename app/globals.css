@@ -272,6 +272,43 @@ tbody tr:hover{
 }
 
 /* Table container */
+
+/* full-width shell */
+.coins-table-shell{
+  width: 100%;
+}
+
+/* header attached to table */
+.coins-table-header{
+  display:flex;
+  gap: 0;
+  padding: 0 24px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* flat tabs, attached look */
+.coins-table-tab{
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+  padding: 12px 14px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent; /* active underline */
+}
+
+.coins-table-tab:hover{
+  color: var(--fg);
+}
+
+.coins-table-tab.active{
+  color: var(--fg);
+  border-bottom-color: var(--fg);
+}
+
 .table-wrap{
   width: 100%;
   background: var(--surface);
