@@ -10,12 +10,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@solana/wallet-adapter-base": "^0.9.24",
+    "@solana/web3.js": "^1.98.2",
+
     "@solana/wallet-adapter-react": "^0.15.35",
     "@solana/wallet-adapter-react-ui": "^0.9.35",
-    "@solana/wallet-adapter-wallets": "^0.19.25",
+    "@solana/wallet-adapter-phantom": "^0.9.24",
+    "@solana/wallet-adapter-solflare": "^0.6.27",
+    "@solana/wallet-adapter-coinbase": "^0.1.26",
+    "@solana/wallet-adapter-trust": "^0.1.16",
+    "@solana/wallet-adapter-glow": "^0.1.26",
+    "@solana/wallet-standard-wallet-adapter-react": "^1.1.4",
+
     "@supabase/supabase-js": "^2.49.1",
-    "@solana/web3.js": "^1.98.2",
     "bs58": "^6.0.0",
     "next": "^15.5.12",
     "react": "19.0.0",
