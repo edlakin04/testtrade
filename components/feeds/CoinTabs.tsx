@@ -11,30 +11,28 @@ export default function CoinTabs({ centered }: { centered?: boolean }) {
     return tab === "filtered" ? MOCK_FILTERED_TOKENS : MOCK_VERIFIED_TOKENS;
   }, [tab]);
 
-  return (
-    <div style={{ width: "100%" }}>
-      <div style={{ display: "flex", justifyContent: centered ? "center" : "flex-start" }}>
-        <div className="tabs" style={{ maxWidth: 520, width: "100%" }}>
-          <button
-            type="button"
-            className={`tab ${tab === "filtered" ? "active" : ""}`}
-            onClick={() => setTab("filtered")}
-          >
-            Filtered
-          </button>
-          <button
-            type="button"
-            className={`tab ${tab === "verified" ? "active" : ""}`}
-            onClick={() => setTab("verified")}
-          >
-            Verified Dev
-          </button>
-        </div>
-      </div>
-
-      <div style={{ padding: "0 18px 18px" }}>
-        <CoinTable tokens={tokens} variant={tab} />
-      </div>
+ return (
+  <div style={{ width: "100%" }}>
+    <div className="tabs" style={{ maxWidth: 520 }}>
+      <button
+        type="button"
+        className={`tab ${tab === "filtered" ? "active" : ""}`}
+        onClick={() => setTab("filtered")}
+      >
+        Filtered
+      </button>
+      <button
+        type="button"
+        className={`tab ${tab === "verified" ? "active" : ""}`}
+        onClick={() => setTab("verified")}
+      >
+        Verified Dev
+      </button>
     </div>
-  );
+
+    <div style={{ marginTop: 10 }}>
+      <CoinTable tokens={tokens} variant={tab} />
+    </div>
+  </div>
+);
 }
