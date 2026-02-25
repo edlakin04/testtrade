@@ -31,6 +31,18 @@ a:hover{ text-decoration: underline; }
 }
 
 /* Header */
+
+.header-centered{
+  justify-content: center;
+}
+
+.brand{
+  font-size: 30px;
+  font-weight: 860;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
 .header{
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(10px);
@@ -76,7 +88,7 @@ a:hover{ text-decoration: underline; }
 
 /* Subnav */
 .subnav{
-  background: var(--surface);
+  background: var(--surface-2);   /* light grey separator */
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -86,6 +98,7 @@ a:hover{ text-decoration: underline; }
   padding: 10px 18px;
   display:flex;
   align-items:center;
+  justify-content: center;        /* centered nav */
   gap: 10px;
   flex-wrap: wrap;
 }
