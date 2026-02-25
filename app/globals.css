@@ -1,22 +1,13 @@
 :root{
   --bg: #ffffff;
-  --fg: #0b0f19;            /* rich near-black */
+  --fg: #0b0f19;
   --muted: rgba(11,15,25,.62);
   --hairline: rgba(11,15,25,.10);
   --hairline-2: rgba(11,15,25,.06);
   --surface: #ffffff;
-  --surface-2: #f6f7fb;     /* soft light panel */
-  --surface-3: #fafbfe;
-  --ink: #0b0f19;           /* contrast */
-  --shadow: 0 10px 30px rgba(11,15,25,.08);
-  --shadow-2: 0 6px 18px rgba(11,15,25,.06);
+  --surface-2: #f6f7fb;
+  --ink: #0b0f19;
   --radius: 12px;
-}
-
-.fullbleed{
-  width: 100vw;               /* <-- forces true viewport width */
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
 }
 
 *{ box-sizing: border-box; }
@@ -30,19 +21,14 @@ a:hover{ text-decoration: underline; }
   padding: 18px 18px;
 }
 
-/* Header */
-
-.header-centered{
-  justify-content: center;
+/* Break out of container for full-width pages like /coins */
+.fullbleed{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
-.brand{
-  font-size: 30px;
-  font-weight: 860;
-  letter-spacing: -0.06em;
-  line-height: 1;
-}
-
+/* Header (title only, centered) */
 .header{
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(10px);
@@ -52,47 +38,24 @@ a:hover{ text-decoration: underline; }
 .header-inner{
   display:flex;
   align-items:center;
-  justify-content:center; /* force center */
+  justify-content:center;
   padding: 16px 18px;
   max-width: 1240px;
   margin: 0 auto;
 }
 
-.brand-center{
+.brand{
   width: 100%;
   text-align: center;
-}
-
-.brand{
-  font-size: 26px;
-  font-weight: 820;
-  letter-spacing: -0.05em;
+  font-size: 30px;
+  font-weight: 860;
+  letter-spacing: -0.06em;
   line-height: 1;
-}
-
-.brand-sub{
-  margin-top: 7px;
-  font-size: 12px;
-  color: rgba(11,15,25,.58);
-  letter-spacing: -0.01em;
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap: 8px;
-  padding: 8px 10px;
-  border: 1px solid var(--hairline);
-  border-radius: 999px;
-  background: var(--surface);
-  box-shadow: var(--shadow-2);
-  font-size: 12px;
-  color: var(--muted);
 }
 
 /* Subnav */
 .subnav{
-  background: var(--surface-2);   /* light grey separator */
+  background: var(--surface-2);
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -102,7 +65,7 @@ a:hover{ text-decoration: underline; }
   padding: 10px 18px;
   display:flex;
   align-items:center;
-  justify-content: center;        /* centered nav */
+  justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
 }
@@ -117,186 +80,52 @@ a:hover{ text-decoration: underline; }
 .navlink:hover{
   text-decoration: none;
   color: var(--fg);
-  background: var(--surface-2);
+  background: rgba(11,15,25,.06);
 }
 
 .navlink.active{
   color: var(--fg);
-  background: var(--surface-2);
+  background: rgba(11,15,25,.06);
 }
 
-/* Page title */
-.page-title{
-  display:flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin: 18px 0 12px;
-}
-
-.page-title h1{
-  font-size: 18px;
-  margin: 0;
-  letter-spacing: -0.03em;
-}
-
-.page-title p{
-  margin: 6px 0 0;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-/* Tabs */
-
-/* Coins title block (left aligned, matches table padding) */
-.coins-title{
-  padding: 18px 24px 10px;
-}
-
-.coins-title h1{
-  margin: 0;
-  font-size: 18px;
-  letter-spacing: -0.03em;
-}
-
-
-
-/* Sub-sub header bar for Filtered/Verified buttons */
-.coins-subbar{
-  background: var(--surface-2);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-}
-
-.coins-subbar-inner{
-  padding: 10px 24px;
-  display:flex;
-  gap: 10px;
-  align-items:center;
-}
-
-/* Buttons styled like clean tabs */
-.coins-tab{
-  font-size: 13px;
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-}
-
-.coins-tab:hover{
-  background: rgba(11,15,25,.04);
-  color: var(--fg);
-}
-
-.coins-tab.active{
-  background: #fff;
-  border-color: var(--hairline);
-  color: var(--fg);
-  box-shadow: 0 6px 18px rgba(11,15,25,.06);
-}
-
-/* Full-width table container (no boxed border, no weird empty area) */
-.coins-table-header{
-  margin: 0;
-  padding: 8px 24px 0;   /* tighter + closer to subnav */
-  background: #fff;      /* pure white */
-  border: none;          /* remove borders */
-}
-.table-wrap{
-  margin: 0;            /* key: remove gap */
-  border-top: none;     /* key: make it touch the tabs bar */
-  width: 100%;
-  background: var(--surface);
-}
-table{
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  table-layout: fixed;  /* key: stops reflow based on content */
-}
-
-/* sticky header that never moves */
-thead th{
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: #f0f1f4;                 /* darker grey bar */
-  text-align:left;
-  font-weight: 700;
-  padding: 14px 24px;
-  border-bottom: 1px solid var(--hairline);
-  color: rgba(11,15,25,.78);           /* darker text */
-}
-
-tbody td{
-  padding: 14px 24px;
-  border-bottom: 1px solid var(--hairline-2);
-}
-
-tbody tr:hover{
-  background: rgba(11,15,25,.02);
-}
-
-.tabs{
-  display:flex;
-  gap: 8px;
-  align-items:center;
-  padding: 8px;
+/* Generic panel (used on other pages) */
+.panel{
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
-  background: var(--surface-3);
-  box-shadow: var(--shadow-2);
-}
-
-.tab{
-  font-size: 13px;
-  border: 1px solid transparent;
-  padding: 8px 12px;
-  border-radius: 10px;
-  background: transparent;
-  cursor: pointer;
-  color: var(--muted);
-}
-
-.tab:hover{
-  color: var(--fg);
-  background: rgba(11,15,25,.04);
-}
-
-.tab.active{
-  color: var(--fg);
   background: var(--surface);
-  border-color: var(--hairline);
-  box-shadow: 0 6px 18px rgba(11,15,25,.06);
+  padding: 14px;
 }
 
-/* Table container */
+.grid-2{
+  display:grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 14px;
+}
 
-/* full-width shell */
+.mono{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  color: rgba(11,15,25,.70);
+}
+
+/* Coins tabs (PURE WHITE – no bar background) */
 .coins-table-shell{
   width: 100%;
 }
 
-/* header attached to table */
 .coins-table-header{
-  display:flex;
-  gap: 0;
-  padding: 0 24px;
-  background: var(--surface-2);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
+  background: #ffffff;
+  padding: 6px 24px 0;  /* tight to subnav */
+  border: none;         /* no visible container */
+  margin: 0;
 }
 
-/* flat tabs, attached look */
 .coins-table-tab{
   border: none;
   background: transparent;
   color: rgba(11,15,25,.55);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 650;
   padding: 10px 14px;
   cursor: pointer;
   border-bottom: 2px solid transparent;
@@ -308,44 +137,39 @@ tbody tr:hover{
 
 .coins-table-tab.active{
   color: var(--fg);
-  border-bottom: 2px solid var(--fg);  /* clean underline indicator */
-}
-
-.coins-table-tab:hover{
-  color: var(--fg);
-}
-
-.coins-table-tab.active{
-  color: var(--fg);
   border-bottom-color: var(--fg);
 }
 
+/* Table (full width, fixed layout, sticky header) */
 .table-wrap{
   width: 100%;
   background: var(--surface);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-}
-
-thead th{
-  position: sticky;
-  top: 0;
-  z-index: 2;
+  margin: 0;
+  border-top: none; /* touches tab area */
 }
 
 table{
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
+  table-layout: fixed; /* key: no column shifting */
 }
 
-thead th, tbody td{
-  padding-left: 18px;
-  padding-right: 18px;
+/* Sticky header row */
+thead th{
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #eceef2;             /* darker grey header bar */
+  color: rgba(11,15,25,.78);
+  text-align:left;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--hairline);
 }
 
 tbody td{
-  padding: 12px 14px;
+  padding: 14px 24px;
   border-bottom: 1px solid var(--hairline-2);
   vertical-align: middle;
 }
@@ -354,65 +178,11 @@ tbody tr:hover{
   background: rgba(11,15,25,.02);
 }
 
-.mono{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 12px;
-  color: rgba(11,15,25,.70);
-}
-
-/* Panels */
-.grid-2{
-  display:grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 14px;
-}
-
-.panel{
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: 14px;
-  box-shadow: var(--shadow-2);
-}
-
-.panel h3{
-  font-size: 13px;
-  margin: 0 0 10px;
-  letter-spacing: -0.02em;
-}
-
-.kv{
-  display:grid;
-  grid-template-columns: 130px 1fr;
-  gap: 8px 12px;
-  font-size: 13px;
-}
-
-.kv .k{
-  color: var(--muted);
-}
-
-.button{
-  width: 100%;
-  border: 1px solid var(--hairline);
-  border-radius: 12px;
-  background: var(--ink);
-  color: #fff;
-  padding: 10px 12px;
-  cursor: pointer;
-  font-weight: 650;
-  box-shadow: 0 12px 26px rgba(11,15,25,.14);
-}
-
-.button:hover{
-  filter: brightness(1.02);
-}
-
 /* Footer */
 .footer{
   margin-top: 28px;
   padding: 22px 0;
-  background: #0f1115;            /* dark grey */
+  background: #0f1115;
   color: rgba(255,255,255,.72);
   font-size: 12px;
 }
