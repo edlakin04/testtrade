@@ -193,41 +193,9 @@ tbody tr:hover{
   color: rgba(255,255,255,.85);
 }
 
-/* --- Solana Wallet Adapter UI overrides --- */
-
-/* Make the wallet button fit your typography and not overflow */
-.wallet-adapter-button-trigger,
-.wallet-adapter-button {
-  height: 38px;
-  padding: 0 12px;
-  border-radius: 10px;
-  border: 1px solid var(--hairline);
-  background: #fff;
-  color: var(--fg);
-  font-size: 13px;
-  font-weight: 650;
-  line-height: 38px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Keep the text inside the button */
-.wallet-adapter-button-trigger span,
-.wallet-adapter-button span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Hover */
-.wallet-adapter-button:hover {
-  background: rgba(11, 15, 25, 0.03);
-}
-
-/* Dropdown menu should be readable and above everything */
-.wallet-adapter-dropdown-list {
+/* Wallet adapter UI must overlay sticky table header */
+.wallet-adapter-dropdown-list,
+.wallet-adapter-modal-wrapper,
+.wallet-adapter-modal-overlay {
   z-index: 99999 !important;
 }
