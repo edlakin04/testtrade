@@ -1,7 +1,7 @@
 export default function Header() {
   return (
-    <div className="header-inner header-centered">
-      <div className="brand">AuthSwap</div>
+    <div className="header-inner">
+      <div className="brand brand-center">AuthSwap</div>
     </div>
   );
 }
