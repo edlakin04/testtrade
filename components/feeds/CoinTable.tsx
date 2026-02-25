@@ -1,13 +1,7 @@
 import Link from "next/link";
 import type { TokenListItem } from "@/types";
 
-export default function CoinTable({
-  tokens,
-  variant
-}: {
-  tokens: TokenListItem[];
-  variant: "filtered" | "verified";
-}) {
+export default function CoinTable({ tokens }: { tokens: TokenListItem[] }) {
   return (
     <div className="table-wrap">
       <table>
@@ -19,7 +13,7 @@ export default function CoinTable({
             <th>Liquidity</th>
             <th>24h Vol</th>
             <th>Age</th>
-            <th>{variant === "verified" ? "Dev" : "Creator"}</th>
+            <th>Creator</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +31,7 @@ export default function CoinTable({
               <td>{t.vol24h}</td>
               <td>{t.age}</td>
               <td className="mono">
-                {variant === "verified" ? (
+                {t.kind === "verified" ? (
                   <Link href={`/dev/${t.devHandle}`}>@{t.devHandle}</Link>
                 ) : (
                   t.creatorWallet
