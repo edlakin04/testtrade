@@ -203,15 +203,25 @@ a:hover{ text-decoration: underline; }
 }
 
 /* Full-width table container (no boxed border, no weird empty area) */
+.coins-table-header{
+  margin: 0;
+  padding: 0 24px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--hairline);
+  border-bottom: none; /* key: no line between tabs and header row */
+}
+
 .table-wrap{
+  margin: 0;            /* key: remove gap */
+  border-top: none;     /* key: make it touch the tabs bar */
   width: 100%;
   background: var(--surface);
 }
-
 table{
-  width:100%;
+  width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  table-layout: fixed;  /* key: stops reflow based on content */
 }
 
 /* sticky header that never moves */
@@ -219,12 +229,12 @@ thead th{
   position: sticky;
   top: 0;
   z-index: 5;
-  background: #fff;
+  background: #f0f1f4;                 /* darker grey bar */
   text-align:left;
-  font-weight: 650;
+  font-weight: 700;
   padding: 14px 24px;
   border-bottom: 1px solid var(--hairline);
-  color: rgba(11,15,25,.62);
+  color: rgba(11,15,25,.78);           /* darker text */
 }
 
 tbody td{
