@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletModalButton } from "@solana/wallet-adapter-react-ui";
 import bs58 from "bs58";
 
 export default function WalletButton() {
@@ -26,8 +26,8 @@ export default function WalletButton() {
 
     async function autoSignIn() {
       if (!connected || !publicKey) return;
-      if (signedIn) return; // already has session cookie
-      if (!signMessage) return; // some wallets may not support message signing
+      if (signedIn) return;
+      if (!signMessage) return;
 
       setSigning(true);
       try {
@@ -67,20 +67,23 @@ export default function WalletButton() {
   }, [connected, publicKey, signMessage, signedIn]);
 
   async function handleDisconnect() {
-    // clear server session cookie
     await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
     setSignedIn(false);
-
-    // disconnect wallet adapter
     await disconnect();
   }
 
+  const short = publicKey ? `${publicKey.toString().slice(0, 4)}…${publicKey.toString().slice(-4)}` : "";
+
   return (
     <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-      <WalletMultiButton />
+      {/* Always lets you choose/change wallet */}
+      <WalletModalButton>
+        {connected ? "Change wallet" : "Select wallet"}
+      </WalletModalButton>
 
       {connected && (
         <>
+          <span className="mono">{short}</span>
           <span style={{ fontSize: 12, color: "var(--muted)" }}>
             {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
           </span>
