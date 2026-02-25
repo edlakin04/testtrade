@@ -159,11 +159,7 @@ a:hover{ text-decoration: underline; }
   letter-spacing: -0.03em;
 }
 
-.coins-title p{
-  margin: 6px 0 0;
-  font-size: 13px;
-  color: var(--muted);
-}
+
 
 /* Sub-sub header bar for Filtered/Verified buttons */
 .coins-subbar{
@@ -205,12 +201,10 @@ a:hover{ text-decoration: underline; }
 /* Full-width table container (no boxed border, no weird empty area) */
 .coins-table-header{
   margin: 0;
-  padding: 0 24px;
-  background: var(--surface-2);
-  border-top: 1px solid var(--hairline);
-  border-bottom: none; /* key: no line between tabs and header row */
+  padding: 8px 24px 0;   /* tighter + closer to subnav */
+  background: #fff;      /* pure white */
+  border: none;          /* remove borders */
 }
-
 .table-wrap{
   margin: 0;            /* key: remove gap */
   border-top: none;     /* key: make it touch the tabs bar */
@@ -300,12 +294,21 @@ tbody tr:hover{
 .coins-table-tab{
   border: none;
   background: transparent;
-  color: var(--muted);
+  color: rgba(11,15,25,.55);
   font-size: 14px;
-  font-weight: 650;
-  padding: 12px 14px;
+  font-weight: 600;
+  padding: 10px 14px;
   cursor: pointer;
-  border-bottom: 2px solid transparent; /* active underline */
+  border-bottom: 2px solid transparent;
+}
+
+.coins-table-tab:hover{
+  color: var(--fg);
+}
+
+.coins-table-tab.active{
+  color: var(--fg);
+  border-bottom: 2px solid var(--fg);  /* clean underline indicator */
 }
 
 .coins-table-tab:hover{
