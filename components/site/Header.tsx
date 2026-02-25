@@ -3,12 +3,10 @@ export default function Header() {
     <div className="header-inner">
       <div>
         <div className="brand">AuthSwap</div>
-        <small className="brand">
-          <small>Filtered coins + verified dev listings</small>
-        </small>
+        <div className="brand-sub">Filtered coins + verified dev listings</div>
       </div>
 
-      <span className="badge">Solana • UI shell</span>
+      <div className="pill">Solana • UI shell</div>
     </div>
   );
 }
