@@ -5,6 +5,17 @@ export default function CoinTable({ tokens }: { tokens: TokenListItem[] }) {
   return (
     <div className="table-wrap">
       <table>
+        {/* Fixed column widths so layout never changes */}
+        <colgroup>
+          <col style={{ width: "32%" }} />
+          <col style={{ width: "11%" }} />
+          <col style={{ width: "11%" }} />
+          <col style={{ width: "12%" }} />
+          <col style={{ width: "12%" }} />
+          <col style={{ width: "8%" }} />
+          <col style={{ width: "14%" }} />
+        </colgroup>
+
         <thead>
           <tr>
             <th>Token</th>
@@ -16,6 +27,7 @@ export default function CoinTable({ tokens }: { tokens: TokenListItem[] }) {
             <th>Creator</th>
           </tr>
         </thead>
+
         <tbody>
           {tokens.map((t) => (
             <tr key={t.mint}>
