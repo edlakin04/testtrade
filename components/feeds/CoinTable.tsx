@@ -43,12 +43,12 @@ export default function CoinTable({ tokens }: { tokens: TokenListItem[] }) {
               <td>{t.vol24h}</td>
               <td>{t.age}</td>
               <td className="mono">
-                {t.kind === "verified" ? (
-                  <Link href={`/dev/${t.devHandle}`}>@{t.devHandle}</Link>
-                ) : (
-                  t.creatorWallet
-                )}
-              </td>
+  {t.kind === "verified" && t.devHandle ? (
+    <Link href={`/dev/${t.devHandle}`}>@{t.devHandle}</Link>
+  ) : (
+    t.creatorWallet
+  )}
+</td>
             </tr>
           ))}
         </tbody>
