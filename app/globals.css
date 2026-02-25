@@ -208,17 +208,16 @@ a:hover{ text-decoration: underline; }
   background: var(--surface);
 }
 
-/* Make table typography bigger so it fills space better */
 table{
   width:100%;
   border-collapse: collapse;
   font-size: 14px;
 }
 
-/* Sticky header that never moves */
+/* sticky header that never moves */
 thead th{
   position: sticky;
-  top: 0;                 /* sticks to top of viewport while scrolling */
+  top: 0;
   z-index: 5;
   background: #fff;
   text-align:left;
@@ -231,7 +230,6 @@ thead th{
 tbody td{
   padding: 14px 24px;
   border-bottom: 1px solid var(--hairline-2);
-  vertical-align: middle;
 }
 
 tbody tr:hover{
