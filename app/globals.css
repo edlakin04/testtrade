@@ -182,7 +182,6 @@ a:hover{ text-decoration: underline; }
   background: var(--surface);
   border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
-  /* no radius, no shadow, no outer border box */
 }
 
 thead th{
@@ -192,18 +191,14 @@ thead th{
 }
 
 table{
-  width:100%;
+  width: 100%;
   border-collapse: collapse;
   font-size: 13px;
 }
 
-thead th{
-  text-align:left;
-  font-weight: 650;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--hairline);
-  color: var(--muted);
-  background: var(--surface);
+thead th, tbody td{
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 tbody td{
