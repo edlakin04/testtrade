@@ -18,7 +18,7 @@ export default function WalletProviders({ children }: { children: React.ReactNod
   const endpoint = useMemo(() => clusterApiUrl("mainnet-beta"), []);
 
   // Wallet Standard adapters (Backpack shows up here if installed)
-  const standardAdapters = useStandardWalletAdapters();
+  const standardAdapters = useStandardWalletAdapters({});
 
   // Explicit adapters we always want in the modal
   const explicitAdapters = useMemo(
