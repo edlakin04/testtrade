@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </div>
 
     <main style={{ flex: 1 }}>
-  {children}
+  <div className="container">{children}</div>
 </main>
 
     <footer className="footer">
