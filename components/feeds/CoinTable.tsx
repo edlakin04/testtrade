@@ -1,58 +1,58 @@
-"use client";
-
-import { useEffect, useMemo, useState } from "react";
-import CoinTable from "@/components/feeds/CoinTable";
+import Link from "next/link";
 import type { TokenListItem } from "@/types";
 
-export default function CoinTabs() {
-  const [tab, setTab] = useState<"filtered" | "verified">("filtered");
-  const [tokens, setTokens] = useState<TokenListItem[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
-      setLoading(true);
-      try {
-        const res = await fetch(`/api/tokens?type=${tab}`, { cache: "no-store" });
-        const json = await res.json();
-        if (!cancelled) setTokens(json.tokens || []);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    }
-
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, [tab]);
-
-  const headerLabel = useMemo(() => (loading ? "Loading…" : tab === "filtered" ? "Filtered" : "Verified"), [loading, tab]);
-
+export default function CoinTable({ tokens }: { tokens: TokenListItem[] }) {
   return (
-    <div className="coins-table-shell">
-      <div className="coins-table-header">
-        <button
-          type="button"
-          className={`coins-table-tab ${tab === "filtered" ? "active" : ""}`}
-          onClick={() => setTab("filtered")}
-        >
-          Filtered
-        </button>
-        <button
-          type="button"
-          className={`coins-table-tab ${tab === "verified" ? "active" : ""}`}
-          onClick={() => setTab("verified")}
-        >
-          Verified
-        </button>
+    <div className="table-wrap">
+      <table>
+        {/* Fixed column widths so layout never changes */}
+        <colgroup>
+          <col style={{ width: "32%" }} />
+          <col style={{ width: "11%" }} />
+          <col style={{ width: "11%" }} />
+          <col style={{ width: "12%" }} />
+          <col style={{ width: "12%" }} />
+          <col style={{ width: "8%" }} />
+          <col style={{ width: "14%" }} />
+        </colgroup>
 
-        <span style={{ marginLeft: 12, fontSize: 13, color: "var(--muted)" }}>{headerLabel}</span>
-      </div>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Price</th>
+            <th>MCAP</th>
+            <th>Liquidity</th>
+            <th>24h Vol</th>
+            <th>Age</th>
+            <th>Creator</th>
+          </tr>
+        </thead>
 
-      <CoinTable tokens={tokens} />
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.mint}>
+              <td>
+                <Link href={`/coin/${t.mint}`}>
+                  <strong>{t.symbol}</strong>{" "}
+                  <span style={{ color: "var(--muted)" }}>{t.name}</span>
+                </Link>
+              </td>
+              <td>{t.price}</td>
+              <td>{t.mcap}</td>
+              <td>{t.liquidity}</td>
+              <td>{t.vol24h}</td>
+              <td>{t.age}</td>
+              <td className="mono">
+                {t.kind === "verified" ? (
+                  <Link href={`/dev/${t.devHandle}`}>@{t.devHandle}</Link>
+                ) : (
+                  t.creatorWallet
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
