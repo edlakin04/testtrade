@@ -2,7 +2,7 @@ import { MOCK_TOKEN_BY_MINT } from "@/lib/mock/tokens";
 import CoinChartMock from "@/components/coin/CoinChartMock";
 import SwapMock from "@/components/coin/SwapMock";
 
-export default function CoinPage({ params }: { params: { mint: string } }) {
+export default function CoinPage({ params }: any) {
   const token = MOCK_TOKEN_BY_MINT[params.mint];
 
   if (!token) {
