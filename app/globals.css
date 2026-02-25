@@ -14,7 +14,7 @@
 }
 
 .fullbleed{
-  width: 100%;
+  width: 100vw;               /* <-- forces true viewport width */
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
@@ -143,6 +143,97 @@ a:hover{ text-decoration: underline; }
 }
 
 /* Tabs */
+
+/* Coins title block (left aligned, matches table padding) */
+.coins-title{
+  padding: 18px 24px 10px;
+}
+
+.coins-title h1{
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+
+.coins-title p{
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Sub-sub header bar for Filtered/Verified buttons */
+.coins-subbar{
+  background: var(--surface-2);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.coins-subbar-inner{
+  padding: 10px 24px;
+  display:flex;
+  gap: 10px;
+  align-items:center;
+}
+
+/* Buttons styled like clean tabs */
+.coins-tab{
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.coins-tab:hover{
+  background: rgba(11,15,25,.04);
+  color: var(--fg);
+}
+
+.coins-tab.active{
+  background: #fff;
+  border-color: var(--hairline);
+  color: var(--fg);
+  box-shadow: 0 6px 18px rgba(11,15,25,.06);
+}
+
+/* Full-width table container (no boxed border, no weird empty area) */
+.table-wrap{
+  width: 100%;
+  background: var(--surface);
+}
+
+/* Make table typography bigger so it fills space better */
+table{
+  width:100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Sticky header that never moves */
+thead th{
+  position: sticky;
+  top: 0;                 /* sticks to top of viewport while scrolling */
+  z-index: 5;
+  background: #fff;
+  text-align:left;
+  font-weight: 650;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--hairline);
+  color: rgba(11,15,25,.62);
+}
+
+tbody td{
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--hairline-2);
+  vertical-align: middle;
+}
+
+tbody tr:hover{
+  background: rgba(11,15,25,.02);
+}
+
 .tabs{
   display:flex;
   gap: 8px;
