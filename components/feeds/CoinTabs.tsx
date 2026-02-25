@@ -12,27 +12,25 @@ export default function CoinTabs() {
   }, [tab]);
 
   return (
-    <>
-      <div className="coins-subbar">
-        <div className="coins-subbar-inner">
-          <button
-            type="button"
-            className={`coins-tab ${tab === "filtered" ? "active" : ""}`}
-            onClick={() => setTab("filtered")}
-          >
-            Filtered
-          </button>
-          <button
-            type="button"
-            className={`coins-tab ${tab === "verified" ? "active" : ""}`}
-            onClick={() => setTab("verified")}
-          >
-            Verified Dev
-          </button>
-        </div>
+    <div className="coins-table-shell">
+      <div className="coins-table-header">
+        <button
+          type="button"
+          className={`coins-table-tab ${tab === "filtered" ? "active" : ""}`}
+          onClick={() => setTab("filtered")}
+        >
+          Filtered
+        </button>
+        <button
+          type="button"
+          className={`coins-table-tab ${tab === "verified" ? "active" : ""}`}
+          onClick={() => setTab("verified")}
+        >
+          Verified
+        </button>
       </div>
 
       <CoinTable tokens={tokens} />
-    </>
+    </div>
   );
 }
