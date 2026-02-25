@@ -1,10 +1,14 @@
 export default function Header() {
   return (
     <div className="header-inner">
-      <div className="brand">
-        <span>AuthSwap</span>
+      <div>
+        <div className="brand">AuthSwap</div>
+        <small className="brand">
+          <small>Filtered coins + verified dev listings</small>
+        </small>
       </div>
-      <div className="badge">Solana • filtered + verified</div>
+
+      <span className="badge">Solana • UI shell</span>
     </div>
   );
 }
