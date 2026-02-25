@@ -30,12 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Subnav />
     </div>
 
-    <main
-      className="container"
-      style={{ flex: 1 }}
-    >
-      {children}
-    </main>
+    <main style={{ flex: 1 }}>
+  {children}
+</main>
 
     <footer className="footer">
       <div className="container">
