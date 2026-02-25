@@ -20,7 +20,7 @@ export default function WalletButton() {
     refreshMe();
   }, []);
 
-  // Auto sign-in after connect
+  // Auto sign-in after connect (one-step UX)
   useEffect(() => {
     let cancelled = false;
 
@@ -76,10 +76,8 @@ export default function WalletButton() {
 
   return (
     <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-      {/* Always lets you choose/change wallet */}
-      <WalletModalButton>
-        {connected ? "Change wallet" : "Select wallet"}
-      </WalletModalButton>
+      {/* Always opens the wallet picker modal (so you can re-choose anytime) */}
+      <WalletModalButton />
 
       {connected && (
         <>
@@ -88,7 +86,7 @@ export default function WalletButton() {
             {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
           </span>
 
-          <button className="coins-table-tab" type="button" onClick={handleDisconnect}>
+          <button className="wallet-adapter-button" type="button" onClick={handleDisconnect}>
             Disconnect
           </button>
         </>
