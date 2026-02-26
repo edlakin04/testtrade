@@ -1,18 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { WalletMultiButton, useWalletModal } from "@solana/wallet-adapter-react-ui";
+import { useEffect, useState } from "react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import bs58 from "bs58";
 
 export default function WalletButton() {
-  const { publicKey, connected, signMessage, disconnect, select } = useWallet();
-  const { visible } = useWalletModal();
-
+  const { publicKey, connected, signMessage, disconnect } = useWallet();
   const [signing, setSigning] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
-
-  const prevVisible = useRef<boolean>(visible);
 
   async function refreshMe() {
     const res = await fetch("/api/me", { cache: "no-store" });
@@ -24,22 +20,7 @@ export default function WalletButton() {
     refreshMe();
   }, []);
 
-  // If user opened the modal, picked a wallet, then cancelled and didn't connect:
-  // clear selection so they can pick a different wallet next time.
-  useEffect(() => {
-    const was = prevVisible.current;
-    const now = visible;
-    prevVisible.current = now;
-
-    if (was && !now && !connected) {
-      // modal just closed and we're not connected -> clear wallet selection
-      try {
-        select(null as any);
-      } catch {}
-    }
-  }, [visible, connected, select]);
-
-  // Auto sign-in after connect (one-step feel)
+  // Auto sign-in after connect
   useEffect(() => {
     let cancelled = false;
 
@@ -91,20 +72,20 @@ export default function WalletButton() {
     await disconnect();
   }
 
-  const short = publicKey ? `${publicKey.toString().slice(0, 4)}…${publicKey.toString().slice(-4)}` : "";
-
   return (
     <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
       <WalletMultiButton />
 
       {connected && (
         <>
-          <span className="mono">{short}</span>
+          <span className="mono">
+            {publicKey?.toString().slice(0, 4)}…{publicKey?.toString().slice(-4)}
+          </span>
           <span style={{ fontSize: 12, color: "var(--muted)" }}>
             {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
           </span>
 
-          <button className="wallet-adapter-button" type="button" onClick={handleDisconnect}>
+          <button className="coins-table-tab" type="button" onClick={handleDisconnect}>
             Disconnect
           </button>
         </>
