@@ -97,7 +97,7 @@ export default function WalletButton() {
           className="as-connect-btn"
           onClick={() => setVisible(true)}
         >
-          Connect Wallet
+          Connect 
         </button>
 
         {attempted && (
