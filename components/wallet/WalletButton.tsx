@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { WalletMultiButton, useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import bs58 from "bs58";
 
 export default function WalletButton() {
   const { publicKey, connected, signMessage, disconnect } = useWallet();
+  const { setVisible } = useWalletModal();
+
   const [signing, setSigning] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
 
@@ -26,8 +28,8 @@ export default function WalletButton() {
 
     async function autoSignIn() {
       if (!connected || !publicKey) return;
-      if (signedIn) return; // already has session cookie
-      if (!signMessage) return; // some wallets may not support message signing
+      if (signedIn) return;
+      if (!signMessage) return;
 
       setSigning(true);
       try {
@@ -67,20 +69,28 @@ export default function WalletButton() {
   }, [connected, publicKey, signMessage, signedIn]);
 
   async function handleDisconnect() {
-    // clear server session cookie
     await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
     setSignedIn(false);
-
-    // disconnect wallet adapter
     await disconnect();
   }
 
   return (
-    <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-      <WalletMultiButton />
-
-      {connected && (
+    <div className="wallet-toplayer" style={{ display: "flex", gap: 10, alignItems: "center" }}>
+      {/* NOT CONNECTED: show our branded connect button */}
+      {!connected ? (
+        <button type="button" className="as-connect-btn" onClick={() => setVisible(true)}>
+          Connect Wallet
+        </button>
+      ) : (
         <>
+          {/* CONNECTED: keep their original button */}
+          <WalletMultiButton />
+
+          {/* Branded switch wallet button */}
+          <button type="button" className="as-switch-btn" onClick={() => setVisible(true)}>
+            Switch Wallet
+          </button>
+
           <span style={{ fontSize: 12, color: "var(--muted)" }}>
             {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
           </span>
