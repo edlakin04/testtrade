@@ -1,5 +1,9 @@
 @import "@solana/wallet-adapter-react-ui/styles.css";
 
+/* ============================= */
+/* Base Theme */
+/* ============================= */
+
 :root{
   --bg: #ffffff;
   --fg: #0b0f19;
@@ -13,14 +17,22 @@
 }
 
 *{ box-sizing: border-box; }
+
 html, body{
   padding:0;
   margin:0;
   background: var(--bg);
   color: var(--fg);
 }
-a{ color: inherit; text-decoration: none; }
-a:hover{ text-decoration: underline; }
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
 
 .container{
   max-width: 1240px;
@@ -35,7 +47,10 @@ a:hover{ text-decoration: underline; }
   margin-right: calc(50% - 50vw);
 }
 
+/* ============================= */
 /* Header */
+/* ============================= */
+
 .header{
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(10px);
@@ -60,7 +75,10 @@ a:hover{ text-decoration: underline; }
   line-height: 1;
 }
 
+/* ============================= */
 /* Subnav */
+/* ============================= */
+
 .subnav{
   background: var(--surface-2);
   border-bottom: 1px solid var(--hairline);
@@ -95,7 +113,10 @@ a:hover{ text-decoration: underline; }
   background: rgba(11,15,25,.06);
 }
 
-/* Generic panel */
+/* ============================= */
+/* Panels / Layout */
+/* ============================= */
+
 .panel{
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
@@ -115,7 +136,10 @@ a:hover{ text-decoration: underline; }
   color: rgba(11,15,25,.70);
 }
 
+/* ============================= */
 /* Coins Tabs */
+/* ============================= */
+
 .coins-table-shell{
   width: 100%;
 }
@@ -147,7 +171,10 @@ a:hover{ text-decoration: underline; }
   border-bottom-color: var(--fg);
 }
 
+/* ============================= */
 /* Table */
+/* ============================= */
+
 .table-wrap{
   width: 100%;
   background: var(--surface);
@@ -184,7 +211,10 @@ tbody tr:hover{
   background: rgba(11,15,25,.02);
 }
 
+/* ============================= */
 /* Footer */
+/* ============================= */
+
 .footer{
   margin-top: 28px;
   padding: 22px 0;
@@ -197,9 +227,13 @@ tbody tr:hover{
   color: rgba(255,255,255,.85);
 }
 
-/* Only style the wallet connect/address button (doesn't touch your site styles) */
-.wallet-adapter-button-trigger,
-.wallet-adapter-button {
+/* ============================= */
+/* Wallet Styling */
+/* ============================= */
+
+/* Fix button alignment */
+.wallet-adapter-button,
+.wallet-adapter-button-trigger{
   height: 38px;
   padding: 0 14px;
   border-radius: 12px;
@@ -207,22 +241,18 @@ tbody tr:hover{
   line-height: 38px;
 }
 
-/* Keep their purple look but fix the text alignment issue you had */
-.wallet-adapter-button-trigger span,
-.wallet-adapter-button span {
+/* Ensure text is vertically centered */
+.wallet-adapter-button span{
   display: inline-flex;
   align-items: center;
 }
 
-/* Optional: remove grey hover shade and use a clean pop */
-.wallet-adapter-button:hover {
-  filter: brightness(1.03);
-}
-.wallet-adapter-button:active {
+/* Slight press animation */
+.wallet-adapter-button:active{
   transform: translateY(1px);
 }
 
-/* Your switch wallet button styling */
+/* Switch Wallet custom button */
 .as-switch-wallet{
   height: 38px;
   padding: 0 12px;
@@ -233,6 +263,28 @@ tbody tr:hover{
   font-weight: 650;
   cursor: pointer;
 }
+
 .as-switch-wallet:hover{
   border-color: rgba(11,15,25,.28);
+}
+
+/* ============================= */
+/* Wallet Layer Fix */
+/* ============================= */
+
+.wallet-toplayer{
+  position: relative;
+  z-index: 2000;
+}
+
+.wallet-adapter-dropdown-list{
+  z-index: 3000 !important;
+}
+
+.wallet-adapter-modal-overlay{
+  z-index: 9000 !important;
+}
+
+.wallet-adapter-modal-wrapper{
+  z-index: 9001 !important;
 }
