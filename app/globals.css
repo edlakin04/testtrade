@@ -193,22 +193,8 @@ tbody tr:hover{
   color: rgba(255,255,255,.85);
 }
 
-/* Wallet Adapter: keep UI above sticky table headers */
+.wallet-adapter-dropdown-list,
+.wallet-adapter-modal-wrapper,
 .wallet-adapter-modal-overlay {
-  z-index: 10000 !important;
-}
-
-.wallet-adapter-modal-wrapper {
-  z-index: 10001 !important;
-}
-
-/* The connected dropdown ("Change wallet" menu) */
-.wallet-adapter-dropdown-list {
-  z-index: 10002 !important;
-}
-
-/* Wallet button text vertical alignment fix (doesn't change theme) */
-.wallet-adapter-button {
-  display: inline-flex !important;
-  align-items: center !important;
+  z-index: 99999 !important;
 }
