@@ -197,7 +197,7 @@ tbody tr:hover{
   color: rgba(255,255,255,.85);
 }
 
-/* ===== AuthSwap Connect Button (our own) ===== */
+/* ===== AuthSwap wallet buttons (only ours) ===== */
 .as-connect-btn{
   background: #7c3aed;          /* purple */
   border: 1px solid #7c3aed;
@@ -212,18 +212,13 @@ tbody tr:hover{
   transition: transform 120ms ease, filter 120ms ease;
 }
 
-.as-connect-btn:hover{
-  filter: brightness(1.03);
-}
+.as-connect-btn:hover{ filter: brightness(1.03); }
+.as-connect-btn:active{ transform: translateY(1px); }
 
-.as-connect-btn:active{
-  transform: translateY(1px);
-}
-
-.as-change-btn{
+.as-switch-btn{
   background: transparent;
-  border: 1px solid var(--hairline);
-  color: rgba(11,15,25,.72);
+  border: 1px solid rgba(11,15,25,.18);
+  color: rgba(11,15,25,.78);
   border-radius: 12px;
   height: 38px;
   padding: 0 12px;
@@ -233,3 +228,12 @@ tbody tr:hover{
   cursor: pointer;
 }
 
+.as-switch-btn:hover{
+  border-color: rgba(11,15,25,.28);
+}
+
+/* ===== Layering fix so dropdown + modal never go under the table/header ===== */
+.wallet-toplayer{ position: relative; z-index: 2000; }
+.wallet-adapter-dropdown-list{ z-index: 3000 !important; }
+.wallet-adapter-modal-overlay{ z-index: 9000 !important; }
+.wallet-adapter-modal-wrapper{ z-index: 9001 !important; }
