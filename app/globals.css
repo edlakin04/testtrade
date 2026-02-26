@@ -233,21 +233,3 @@ tbody tr:hover{
   cursor: pointer;
 }
 
-/* ===== Layering fixes (does NOT break clicking) ===== */
-.wallet-toplayer{
-  position: relative;
-  z-index: 2000;
-}
-
-/* Connected dropdown (address button menu) */
-.wallet-adapter-dropdown-list{
-  z-index: 3000 !important;
-}
-
-/* Modal must be above everything, but wrapper must be above overlay */
-.wallet-adapter-modal-overlay{
-  z-index: 9000 !important;
-}
-.wallet-adapter-modal-wrapper{
-  z-index: 9001 !important;
-}
