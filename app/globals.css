@@ -13,7 +13,12 @@
 }
 
 *{ box-sizing: border-box; }
-html, body{ padding:0; margin:0; background: var(--bg); color: var(--fg); }
+html, body{
+  padding:0;
+  margin:0;
+  background: var(--bg);
+  color: var(--fg);
+}
 a{ color: inherit; text-decoration: none; }
 a:hover{ text-decoration: underline; }
 
@@ -30,7 +35,7 @@ a:hover{ text-decoration: underline; }
   margin-right: calc(50% - 50vw);
 }
 
-/* Header (title only, centered) */
+/* Header */
 .header{
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(10px);
@@ -90,7 +95,7 @@ a:hover{ text-decoration: underline; }
   background: rgba(11,15,25,.06);
 }
 
-/* Generic panel (used on other pages) */
+/* Generic panel */
 .panel{
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
@@ -110,15 +115,15 @@ a:hover{ text-decoration: underline; }
   color: rgba(11,15,25,.70);
 }
 
-/* Coins tabs (PURE WHITE – no bar background) */
+/* Coins Tabs */
 .coins-table-shell{
   width: 100%;
 }
 
 .coins-table-header{
   background: #ffffff;
-  padding: 6px 24px 0;  /* tight to subnav */
-  border: none;         /* no visible container */
+  padding: 6px 24px 0;
+  border: none;
   margin: 0;
 }
 
@@ -142,27 +147,26 @@ a:hover{ text-decoration: underline; }
   border-bottom-color: var(--fg);
 }
 
-/* Table (full width, fixed layout, sticky header) */
+/* Table */
 .table-wrap{
   width: 100%;
   background: var(--surface);
   margin: 0;
-  border-top: none; /* touches tab area */
+  border-top: none;
 }
 
 table{
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
-  table-layout: fixed; /* key: no column shifting */
+  table-layout: fixed;
 }
 
-/* Sticky header row */
 thead th{
   position: sticky;
   top: 0;
   z-index: 5;
-  background: #eceef2;             /* darker grey header bar */
+  background: #eceef2;
   color: rgba(11,15,25,.78);
   text-align:left;
   font-weight: 700;
@@ -193,4 +197,68 @@ tbody tr:hover{
   color: rgba(255,255,255,.85);
 }
 
+/* ========================================================= */
+/* AUTH SWAP WALLET CUSTOMIZATION (safe + minimal changes)  */
+/* ========================================================= */
 
+/* Purple Connect Wallet button (only when not connected) */
+.as-connect.wallet-adapter-button {
+  background: #7c3aed;
+  border: 1px solid #7c3aed;
+  color: #fff;
+  border-radius: 12px;
+  height: 38px;
+  padding: 0 14px;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 38px;
+  cursor: pointer;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.as-connect.wallet-adapter-button:hover {
+  filter: brightness(1.03);
+}
+
+.as-connect.wallet-adapter-button:active {
+  transform: translateY(1px);
+}
+
+/* Secondary "Change" button */
+.as-change.wallet-adapter-button {
+  background: transparent;
+  border: 1px solid var(--hairline);
+  color: rgba(11,15,25,.72);
+  border-radius: 12px;
+  height: 38px;
+  padding: 0 12px;
+  font-weight: 650;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 38px;
+  cursor: pointer;
+}
+
+/* Make wallet area stack above sticky table header */
+.wallet-toplayer {
+  position: relative;
+  z-index: 2000;
+}
+
+/* Dropdown layering fix */
+.wallet-adapter-dropdown-list {
+  z-index: 3000 !important;
+}
+
+/* Modal layering fix (clickable) */
+.wallet-adapter-modal-overlay {
+  z-index: 9000 !important;
+}
+.wallet-adapter-modal-wrapper {
+  z-index: 9001 !important;
+}
