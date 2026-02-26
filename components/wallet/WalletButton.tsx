@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
+import {
+  WalletMultiButton,
+  WalletModalButton
+} from "@solana/wallet-adapter-react-ui";
 import bs58 from "bs58";
 
 export default function WalletButton() {
@@ -20,7 +23,7 @@ export default function WalletButton() {
     refreshMe();
   }, []);
 
-  // Auto sign-in after connect
+  // Auto sign-in after connect (keeps your 1-step experience)
   useEffect(() => {
     let cancelled = false;
 
@@ -72,24 +75,35 @@ export default function WalletButton() {
     await disconnect();
   }
 
+  // Not connected: show OUR button + a small "Change" to reopen modal if they cancelled a wallet
+  if (!connected) {
+    return (
+      <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        {/* Opens wallet modal */}
+        <WalletModalButton className="as-connect">
+          Connect Wallet
+        </WalletModalButton>
+
+        {/* If they clicked a wallet and cancelled, this still lets them reopen and choose another */}
+        <WalletModalButton className="as-change">
+          Change
+        </WalletModalButton>
+      </div>
+    );
+  }
+
+  // Connected: keep THEIR button and dropdown exactly as-is
   return (
-    <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+    <div className="wallet-toplayer" style={{ display: "flex", gap: 10, alignItems: "center" }}>
       <WalletMultiButton />
 
-      {connected && (
-        <>
-          <span className="mono">
-            {publicKey?.toString().slice(0, 4)}…{publicKey?.toString().slice(-4)}
-          </span>
-          <span style={{ fontSize: 12, color: "var(--muted)" }}>
-            {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
-          </span>
+      <span style={{ fontSize: 12, color: "var(--muted)" }}>
+        {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
+      </span>
 
-          <button className="coins-table-tab" type="button" onClick={handleDisconnect}>
-            Disconnect
-          </button>
-        </>
-      )}
+      <button className="coins-table-tab" type="button" onClick={handleDisconnect}>
+        Disconnect
+      </button>
     </div>
   );
 }
