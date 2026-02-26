@@ -76,20 +76,31 @@ export default function WalletButton() {
   }
 
   return (
-    <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-      <WalletMultiButton />
+  <div className="wallet-toplayer" style={{ display: "flex", gap: 10, alignItems: "center" }}>
+    <WalletMultiButton />
 
-      {connected && (
-        <>
-          <span style={{ fontSize: 12, color: "var(--muted)" }}>
-            {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
-          </span>
+    {connected && (
+      <>
+        {/* Switch Wallet (opens the same wallet modal) */}
+        <button
+          type="button"
+          className="as-switch-wallet"
+          onClick={() => {
+            // WalletMultiButton uses this global event internally; easiest stable way:
+            document.dispatchEvent(new Event("wallet-adapter-modal-open"));
+          }}
+        >
+          Switch Wallet
+        </button>
 
-          <button className="coins-table-tab" type="button" onClick={handleDisconnect}>
-            Disconnect
-          </button>
-        </>
-      )}
-    </div>
-  );
-}
+        <span style={{ fontSize: 12, color: "var(--muted)" }}>
+          {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
+        </span>
+
+        <button className="coins-table-tab" type="button" onClick={handleDisconnect}>
+          Disconnect
+        </button>
+      </>
+    )}
+  </div>
+);
