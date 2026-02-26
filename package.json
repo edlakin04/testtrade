@@ -19,7 +19,6 @@
     "@solana/wallet-adapter-coinbase": "^0.1.23",
     "@solana/wallet-adapter-trust": "^0.1.17",
     "@solana/wallet-adapter-glow": "^0.1.18",
-  
 
     "@supabase/supabase-js": "^2.49.1",
     "bs58": "^6.0.0",
