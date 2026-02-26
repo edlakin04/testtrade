@@ -1,17 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import {
-  WalletMultiButton,
-  WalletModalButton
-} from "@solana/wallet-adapter-react-ui";
+import { useWalletModal, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import bs58 from "bs58";
 
 export default function WalletButton() {
   const { publicKey, connected, signMessage, disconnect } = useWallet();
+  const { setVisible, visible } = useWalletModal();
+
   const [signing, setSigning] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+
+  // Only show "Change" if they tried to connect (opened modal) and then cancelled
+  const [attempted, setAttempted] = useState(false);
+
+  const short = useMemo(() => {
+    if (!publicKey) return "";
+    const s = publicKey.toString();
+    return `${s.slice(0, 4)}…${s.slice(-4)}`;
+  }, [publicKey]);
 
   async function refreshMe() {
     const res = await fetch("/api/me", { cache: "no-store" });
@@ -23,7 +31,12 @@ export default function WalletButton() {
     refreshMe();
   }, []);
 
-  // Auto sign-in after connect (keeps your 1-step experience)
+  // Track "attempted" when they open the modal
+  useEffect(() => {
+    if (visible) setAttempted(true);
+  }, [visible]);
+
+  // Auto sign-in once connected
   useEffect(() => {
     let cancelled = false;
 
@@ -75,28 +88,37 @@ export default function WalletButton() {
     await disconnect();
   }
 
-  // Not connected: show OUR button + a small "Change" to reopen modal if they cancelled a wallet
+  // NOT CONNECTED: show our clean button, and show Change only if they previously attempted
   if (!connected) {
     return (
       <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-        {/* Opens wallet modal */}
-        <WalletModalButton className="as-connect">
+        <button
+          type="button"
+          className="as-connect-btn"
+          onClick={() => setVisible(true)}
+        >
           Connect Wallet
-        </WalletModalButton>
+        </button>
 
-        {/* If they clicked a wallet and cancelled, this still lets them reopen and choose another */}
-        <WalletModalButton className="as-change">
-          Change
-        </WalletModalButton>
+        {attempted && (
+          <button
+            type="button"
+            className="as-change-btn"
+            onClick={() => setVisible(true)}
+          >
+            Change
+          </button>
+        )}
       </div>
     );
   }
 
-  // Connected: keep THEIR button and dropdown exactly as-is
+  // CONNECTED: show their original address button + dropdown (keeps their style)
   return (
     <div className="wallet-toplayer" style={{ display: "flex", gap: 10, alignItems: "center" }}>
       <WalletMultiButton />
 
+      <span className="mono">{short}</span>
       <span style={{ fontSize: 12, color: "var(--muted)" }}>
         {signing ? "Signing…" : signedIn ? "Signed in" : "Connected"}
       </span>
