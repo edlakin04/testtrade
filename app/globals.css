@@ -193,8 +193,6 @@ tbody tr:hover{
   color: rgba(255,255,255,.85);
 }
 
-.wallet-adapter-dropdown-list,
-.wallet-adapter-modal-wrapper,
-.wallet-adapter-modal-overlay {
-  z-index: 99999 !important;
-}
+.wallet-adapter-modal-overlay { z-index: 10000 !important; }
+.wallet-adapter-modal-wrapper { z-index: 10001 !important; }
+.wallet-adapter-dropdown-list { z-index: 10002 !important; }
