@@ -197,13 +197,9 @@ tbody tr:hover{
   color: rgba(255,255,255,.85);
 }
 
-/* ========================================================= */
-/* AUTH SWAP WALLET CUSTOMIZATION (safe + minimal changes)  */
-/* ========================================================= */
-
-/* Purple Connect Wallet button (only when not connected) */
-.as-connect.wallet-adapter-button {
-  background: #7c3aed;
+/* ===== AuthSwap Connect Button (our own) ===== */
+.as-connect-btn{
+  background: #7c3aed;          /* purple */
   border: 1px solid #7c3aed;
   color: #fff;
   border-radius: 12px;
@@ -211,24 +207,20 @@ tbody tr:hover{
   padding: 0 14px;
   font-weight: 700;
   font-size: 13px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   line-height: 38px;
   cursor: pointer;
   transition: transform 120ms ease, filter 120ms ease;
 }
 
-.as-connect.wallet-adapter-button:hover {
+.as-connect-btn:hover{
   filter: brightness(1.03);
 }
 
-.as-connect.wallet-adapter-button:active {
+.as-connect-btn:active{
   transform: translateY(1px);
 }
 
-/* Secondary "Change" button */
-.as-change.wallet-adapter-button {
+.as-change-btn{
   background: transparent;
   border: 1px solid var(--hairline);
   color: rgba(11,15,25,.72);
@@ -237,28 +229,25 @@ tbody tr:hover{
   padding: 0 12px;
   font-weight: 650;
   font-size: 13px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   line-height: 38px;
   cursor: pointer;
 }
 
-/* Make wallet area stack above sticky table header */
-.wallet-toplayer {
+/* ===== Layering fixes (does NOT break clicking) ===== */
+.wallet-toplayer{
   position: relative;
   z-index: 2000;
 }
 
-/* Dropdown layering fix */
-.wallet-adapter-dropdown-list {
+/* Connected dropdown (address button menu) */
+.wallet-adapter-dropdown-list{
   z-index: 3000 !important;
 }
 
-/* Modal layering fix (clickable) */
-.wallet-adapter-modal-overlay {
+/* Modal must be above everything, but wrapper must be above overlay */
+.wallet-adapter-modal-overlay{
   z-index: 9000 !important;
 }
-.wallet-adapter-modal-wrapper {
+.wallet-adapter-modal-wrapper{
   z-index: 9001 !important;
 }
